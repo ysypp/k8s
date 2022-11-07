@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 3 # desired state (kube-controller-manager)
+  selector:
+    matchLabels:
+      app: nginx-replicaset
+
+  template:
+    metadata:
+      name: nginx-replicaset
+      labels:
+        app: nginx-replicaset
+    spec:
+      containers:
+      - name: nginx-replicaset-container
+        image: nginx
+        ports:
+        - containerPort: 80
